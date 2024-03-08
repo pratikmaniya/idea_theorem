@@ -1,24 +1,39 @@
-import logo from './logo.svg';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Container } from '@mui/material';
+
+import Header from './Layout/Header'
+import SignUp from './SignUp'
+
 import './App.css';
+
+const theme = createTheme({
+  components: {
+    MuiFormLabel: {
+      styleOverrides: {
+        asterisk: { color: "red" },
+      },
+    }
+  },
+  typography: {
+    fontFamily: `"Lato", sans-serif`,
+    fontSize: 15,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+    button: {
+      textTransform: 'none'
+    }
+  }
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Container maxWidth={false} disableGutters>
+        <Header />
+        <SignUp />
+      </Container>
+    </ThemeProvider>
   );
 }
 
